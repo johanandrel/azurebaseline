@@ -16,10 +16,10 @@ Se hvordan dette kan settes opp og automatiseres ved hjelp av eksempel/POC med [
 > #### Azure SQL Database should have Microsoft Entra-only authentication
 > - PolicySet: a55e4a7e-1b9c-43ef-b4b3-642f303804d6
 > - Ref: https://www.azadvertizer.net/azpolicyinitiativesadvertizer/a55e4a7e-1b9c-43ef-b4b3-642f303804d6.html
->> - Policy ID: abda6d70-9778-44e7-84a8-06713e6db027
->> - Ref: https://www.azadvertizer.net/azpolicyadvertizer/abda6d70-9778-44e7-84a8-06713e6db027.html
->> - Policy ID: b3a22bc9-66de-45fb-98fa-00f5df42f41a
->> - Ref: https://www.azadvertizer.net/azpolicyadvertizer/b3a22bc9-66de-45fb-98fa-00f5df42f41a.html
+>   * Policy ID: abda6d70-9778-44e7-84a8-06713e6db027
+>   * Ref: https://www.azadvertizer.net/azpolicyadvertizer/abda6d70-9778-44e7-84a8-06713e6db027.html
+>   * Policy ID: b3a22bc9-66de-45fb-98fa-00f5df42f41a
+>   * Ref: https://www.azadvertizer.net/azpolicyadvertizer/b3a22bc9-66de-45fb-98fa-00f5df42f41a.html
 
 ### Compliance
 

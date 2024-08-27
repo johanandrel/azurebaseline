@@ -23,7 +23,8 @@ resource "azurerm_mssql_server" "dbserver" {
   }
 }
 
-# For demo/POC bruk! Bruk Private Endpoints e.l. i tillegg for å lukke nettverk
+# For demo/POC bruk slik at man kan teste authentisering og autorisering! 
+# Bruk Private Endpoints e.l. for å lukke nettverk 
 resource "azurerm_mssql_firewall_rule" "dbserverfw" {
   name             = "localIP"
   server_id        = azurerm_mssql_server.dbserver.id
