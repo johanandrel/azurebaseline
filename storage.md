@@ -36,7 +36,7 @@ Denne skrur av lokale brukere som noen ganger blir brukt til f.eks. FTP-tilgang.
 
 Dette er standard innstilling på en Storage Container og den eneste riktige innstillingen hvis man skal ha authentisering og autorisering på blobs i en container. Som nevnt under Storage Account så vil denne overstyres av `allow_nested_items_to_be_public = false`, hvis denne likevel settes til noe annet enn `container_access_type = "private"` 
 
-Vær oppmerksom på at når man har skrudd av nøklene til en Storage Account kan ikke Terraform lenger endre `container_access_type` egenskapen på en container fordi denne egenskapen styres av en API som ikke støtter Entra ID. Dette er sjelden et problem i praksis da denne egenskapen sjelden endres. 
+Vær oppmerksom på at når man har skrudd av nøklene til en Storage Account kan ikke Terraform lenger endre `container_access_type` egenskapen på en container fordi denne egenskapen styres av en API som [ikke støtter Entra ID](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container#container_access_type). Dette er sjelden et problem i praksis da denne egenskapen sjelden endres. 
 
 #### RBAC (tilgangsstyring/autorisasjon)
 
