@@ -42,6 +42,8 @@ I portalen står det under **Operations -> Updates - > Periodic assessment** som
 
 #### System updates should be installed on your machines (powered by Azure Update Manager) / System updates should be installed on your machines (powered by Update Center)*
 
+![System updates should be installed](/img/system_updates_not_installed.png)
+
 Ved å aktivere periodisk sjekk for systemoppdateringer (forrige punkt), vil man få et policybrudd markert som *High severity* hvis det har kommet nye kritiske oppdateringer som ikke er installert. Disse må håndteres ved å installere oppdateringene, men dette kan gjøres automatisk av Azure platformen slik at policybruddene også blir automatisk håndtert. 
 
 Hvis man ønsker automatisk oppdatering av kritiske systemoppdateringer kan man sette følgende setting i Terraform:
@@ -52,9 +54,13 @@ patch_mode = "AutomaticByPlatform"
 
 Da vil man kunne gå til **Azure Update Manager** og se på `Patch orchestration` hvor VMen vil stå med `Azure Managed - Safe deployment`
 
-
+![Azure Update Manager](/img/azure_update_manager.png)
 
 Mer om hvordan dette fungerer finnes [her](https://learn.microsoft.com/en-us/azure/virtual-machines/automatic-vm-guest-patching)
+
+Bildet under viser to like VMer, opprettet på samme image på samme dag. *Begge* er konfigurert med `patch_assessment_mode = "AutomaticByPlatform"`, men kun den ene er konfigurert med `patch_mode = "AutomaticByPlatform"` Skjermdumpen der tatt dagen etter opprettelse og viser at sistnevnte VM har blitt patchet automatisk.
+
+![VM med og uten automatisk oppdatering/patching](/img/vm_compare.png)
 
 
 ### Azure policy & compliance
