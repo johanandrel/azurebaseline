@@ -10,7 +10,11 @@ VMer bør også konfigureres til å automatisk sjekke etter systemoppdateringer 
 
 #### Encryption at host
 
-Hovedinnstillingen for å skru på kryptering er å sette `encryption_at_host_enabled = true` på en **Virtual machine** ressurs via Terraform. 
+Hovedinnstillingen for å skru på kryptering er å sette følgende setting på en **Virtual machine** ressurs via Terraform:
+
+```
+encryption_at_host_enabled = true
+```
 
 I portalen står det under **Properties -> Disk - > Encryption at host** som skal være **enabled**. Merk at man må ha en VM som støtter kryptering. De rimeligste VMene støtter typisk ikke dette. 
 
@@ -28,9 +32,30 @@ resource "null_resource" "encryptionathost" {
 
 #### Machines should be configured to periodically check for missing system updates
 
-Hovedinnstillingen for å skru på periodisk sjekk for systemoppdateringer er å sette `patch_assessment_mode = "AutomaticByPlatform"` på en **Virtual machine** ressurs via Terraform. 
+Hovedinnstillingen for å skru på periodisk sjekk for systemoppdateringer er å sette følgende innstilling på en **Virtual machine** ressurs via Terraform:
+
+```
+patch_assessment_mode = "AutomaticByPlatform"
+```
 
 I portalen står det under **Operations -> Updates - > Periodic assessment** som skal være **Yes**. Dette gjør at VMen scannes automatisk hvert døgn. 
+
+#### System updates should be installed on your machines (powered by Azure Update Manager) / System updates should be installed on your machines (powered by Update Center)*
+
+Ved å aktivere periodisk sjekk for systemoppdateringer (forrige punkt), vil man få et policybrudd markert som *High severity* hvis det har kommet nye kritiske oppdateringer som ikke er installert. Disse må håndteres ved å installere oppdateringene, men dette kan gjøres automatisk av Azure platformen slik at policybruddene også blir automatisk håndtert. 
+
+Hvis man ønsker automatisk oppdatering av kritiske systemoppdateringer kan man sette følgende setting i Terraform:
+
+```
+patch_mode = "AutomaticByPlatform"
+```
+
+Da vil man kunne gå til **Azure Update Manager** og se på `Patch orchestration` hvor VMen vil stå med `Azure Managed - Safe deployment`
+
+
+
+Mer om hvordan dette fungerer finnes [her](https://learn.microsoft.com/en-us/azure/virtual-machines/automatic-vm-guest-patching)
+
 
 ### Azure policy & compliance
 
@@ -38,11 +63,15 @@ I portalen står det under **Operations -> Updates - > Periodic assessment** som
 > - PolicyID: fc4d8e41-e223-45ea-9bf5-eada37891d87
 > - Ref: https://www.azadvertizer.net/azpolicyadvertizer/fc4d8e41-e223-45ea-9bf5-eada37891d87.html
 > - Microsoft cloud security benchmark: PV-6
-> - CIS Microsoft Azure Foundations Benchmark: 2.1
-
 
 > #### Machines should be configured to periodically check for missing system updates
 > - PolicyID: bd876905-5b84-4f73-ab2d-2e7a7c4568d9
 > - Ref: https://www.azadvertizer.net/azpolicyadvertizer/bd876905-5b84-4f73-ab2d-2e7a7c4568d9.html
-> - Microsoft cloud security benchmark: DP-4
+> - Microsoft cloud security benchmark: PV-6
+> - CIS Microsoft Azure Foundations Benchmark: 2.1
+
+> #### System updates should be installed on your machines (powered by Update Center)
+> - PolicyID: f85bf3e0-d513-442e-89c3-1784ad63382b
+> - Ref: https://www.azadvertizer.net/azpolicyadvertizer/f85bf3e0-d513-442e-89c3-1784ad63382b.html
+> - Microsoft cloud security benchmark: PV-6
 
